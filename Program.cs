@@ -49,7 +49,7 @@ public void Main()
 	hmac = new HMACSHA256(secretkey);
 	byte [] plainText = StringToBytes("a");
 	hashValue = hmac.ComputeHash(plainText);
-	Console.WriteLine(BytesToHex(hashValue));
+	Console.WriteLine($"HMAC: {BytesToHex(hashValue)}");
 	
 	byte[] mackey = StringToBytes("c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644");
 	hmac = new HMACSHA256(mackey);
@@ -132,7 +132,7 @@ static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
     // with the specified key and IV.
     using (Aes aesAlg = AesManaged.Create())
     {
-		aesAlg.Padding = PaddingMode.None;
+		aesAlg.Padding = PaddingMode.PKCS7;
         aesAlg.Key = Key;
         aesAlg.IV = IV;
 
