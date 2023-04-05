@@ -111,7 +111,9 @@ public void Main()
 	Console.WriteLine(ivBytes.Length);
 	// DECRYPTION is applied and the bytes are turned into ClearText HEX BYTES
 	// Those HEX BYTES can then be turned into UTF-8 chars
-	decryptedHexString = BytesToHex(StringToBytes(DecryptStringFromBytes_Aes(encryptedBytes,keyPwd,ivBytes)));
+	string decryptedString = DecryptStringFromBytes_Aes(encryptedBytes,keyPwd,ivBytes);
+	Console.WriteLine($"decryptedString: {decryptedString}");
+	decryptedHexString = BytesToHex(StringToBytes(decryptedString));
 	Console.WriteLine(decryptedHexString);
 	Console.WriteLine(Encoding.UTF8.GetChars( HexStringToBytes(decryptedHexString)));
 
