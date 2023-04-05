@@ -102,6 +102,21 @@ public void Main()
 	
 	// 3ECF5388E220DA9E0F919485DEB676D8BEE3AEC046A779353B463418511EE622
 	// 3ECF5388E220DA9E0F919485DEB676D8BEE3AEC046A779353B463418511EE622
+
+	// ##### NEXT LINE DECODES the Base64, encrypted data into BYTES
+	encryptedBytes =   Base64DecodeAsBytes("28ChkwP5M76bByKy2NcVEt5zDsaou/2J77i5Ut0OdWA=");// HexStringToBytes(encryptedString);
+	keyPwd = HexStringToBytes("c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644");
+	Console.WriteLine(keyPwd.Length);
+	ivBytes = HexStringToBytes("e403e0dc70660abcfc4aec50ea5400f3");
+	Console.WriteLine(ivBytes.Length);
+	// DECRYPTION is applied and the bytes are turned into ClearText HEX BYTES
+	// Those HEX BYTES can then be turned into UTF-8 chars
+	decryptedHexString = BytesToHex(StringToBytes(DecryptStringFromBytes_Aes(encryptedBytes,keyPwd,ivBytes)));
+	Console.WriteLine(decryptedHexString);
+	Console.WriteLine(Encoding.UTF8.GetChars( HexStringToBytes(decryptedHexString)));
+
+	 // IV 
+
 	
 }
 private string generateHmac(string mackey, string ivAndEncrypted){
@@ -230,10 +245,10 @@ private byte[] HexStringToBytes(string hex){
 	return System.Convert.FromHexString(hex);
 }
 
-private byte[] StringToBytes(string pwd){
+private byte[] StringToBytes(string source){
 	var utf8 = new UTF8Encoding();
-	byte[] pass = utf8.GetBytes(pwd);
-	return pass;
+	byte[] targetBytes = utf8.GetBytes(source);
+	return targetBytes;
 }
 
 }
