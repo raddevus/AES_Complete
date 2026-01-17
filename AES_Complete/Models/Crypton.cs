@@ -21,7 +21,7 @@ private string generateHmac(string mackey, string ivAndEncrypted){
 	return BytesToHex(hmacOut);
 }
 
-static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
+byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
 {
     // Check arguments.
     if (plainText == null || plainText.Length <= 0)
@@ -62,7 +62,7 @@ static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
     return encrypted;
 }
 
-static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
 {
     // Check arguments.
     if (cipherText == null || cipherText.Length <= 0)
@@ -106,19 +106,19 @@ static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] I
     return plaintext;
 }
 
-public static string Base64Encode(string plainText) 
+public string Base64Encode(string plainText) 
 {
   var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
   return System.Convert.ToBase64String(plainTextBytes);
 }
 
-public static string Base64Decode(string base64EncodedData) 
+public string Base64Decode(string base64EncodedData) 
 {
   var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
   return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
 }
 
-public static Byte[] Base64DecodeAsBytes(string base64EncodedData) 
+public  Byte[] Base64DecodeAsBytes(string base64EncodedData) 
 {
   return System.Convert.FromBase64String(base64EncodedData);
   //return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
