@@ -25,30 +25,6 @@ class CryptoAlgo{
 
 public void Main()
 {
-	byte[] secretkey = new Byte[64];
-	secretkey[0] = 65;
-	secretkey[1] = 66;
-	secretkey[2] = 67;
-	Console.WriteLine($"{Convert.ToChar(secretkey[0])}");
-	HMACSHA256 hmac = new HMACSHA256(secretkey);
-	//Console.WriteLine(hmac);
-	byte [] fakeFile = {65,66,67};
-	byte[] hashValue = hmac.ComputeHash(fakeFile);
-	//Console.WriteLine(hashValue);
-	Console.WriteLine(BytesToHex(hashValue));
-	
-	Console.WriteLine(BytesToHex(secretkey));
-	
-	secretkey = StringToBytes("ABC");
-	hmac = new HMACSHA256(secretkey);
-	hashValue = hmac.ComputeHash(fakeFile);
-	Console.WriteLine(BytesToHex(hashValue));
-	
-	secretkey = StringToBytes("a");
-	hmac = new HMACSHA256(secretkey);
-	byte [] plainText = StringToBytes("a");
-	hashValue = hmac.ComputeHash(plainText);
-	Console.WriteLine($"HMAC: {BytesToHex(hashValue)}");
 	
 	byte[] mackey = StringToBytes("c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644");
 	hmac = new HMACSHA256(mackey);
