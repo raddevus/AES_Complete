@@ -21,6 +21,11 @@ private string generateHmac(string mackey, string ivAndEncrypted){
 	return BytesToHex(hmacOut);
 }
 
+public bool ValidateHmac(string mackey, string ivAndEncrypted, string targetMac){
+   var generatedHmac = generateHmac(mackey, ivAndEncrypted);
+   return generatedHmac == targetMac;
+}
+
 byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
 {
     // Check arguments.
@@ -126,8 +131,9 @@ public  Byte[] Base64DecodeAsBytes(string base64EncodedData)
 
 public string BytesToHex(byte[] bytes) 
 { 
-   //return String.Concat(Array.ConvertAll(bytes, x => x.ToString("X2"))); 
-   return String.Concat(Array.ConvertAll(bytes, x => x.ToString("X2"))); 
+   //return String.Concat(Array.ConvertAll(bytes, x => x.ToString("X2")));
+   // returns lowercase hex string
+   return String.Concat(Array.ConvertAll(bytes, x => x.ToString("x2"))); 
 }
 
 public byte[] HexStringToBytes(string hex){
