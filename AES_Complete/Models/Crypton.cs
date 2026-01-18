@@ -124,17 +124,17 @@ public  Byte[] Base64DecodeAsBytes(string base64EncodedData)
   //return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
 }
 
-private string BytesToHex(byte[] bytes) 
+public string BytesToHex(byte[] bytes) 
 { 
    //return String.Concat(Array.ConvertAll(bytes, x => x.ToString("X2"))); 
    return String.Concat(Array.ConvertAll(bytes, x => x.ToString("X2"))); 
 }
 
-private byte[] HexStringToBytes(string hex){
+public byte[] HexStringToBytes(string hex){
 	return System.Convert.FromHexString(hex);
 }
 
-private byte[] StringToBytes(string source){
+public byte[] StringToBytes(string source){
 	var utf8 = new UTF8Encoding();
 	byte[] targetBytes = utf8.GetBytes(source);
 	return targetBytes;
