@@ -62,7 +62,7 @@ byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
     return encrypted;
 }
 
-string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
 {
     // Check arguments.
     if (cipherText == null || cipherText.Length <= 0)
