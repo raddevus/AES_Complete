@@ -39,7 +39,7 @@ byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
 
     // Create an Aes object
     // with the specified key and IV.
-    using (Aes aesAlg = AesManaged.Create())
+    using (Aes aesAlg = Aes.Create())
     {
 		aesAlg.Padding = PaddingMode.PKCS7;
         aesAlg.Key = Key;
@@ -83,7 +83,7 @@ public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] I
 
     // Create an Aes object
     // with the specified key and IV.
-    using (Aes aesAlg = AesManaged.Create())
+    using (Aes aesAlg = Aes.Create())
     {
 		aesAlg.Padding = PaddingMode.PKCS7;
         aesAlg.Key = Key;
