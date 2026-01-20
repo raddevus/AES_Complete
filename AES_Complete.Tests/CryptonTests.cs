@@ -37,6 +37,15 @@ public class CryptonTests
     }
 
     [Fact]
+    public void Base64EncodeTest(){
+       Crypton c = new();
+       var unencodedText = "this is the test";
+       Console.WriteLine($"encoding: \"{unencodedText}\"");
+       Console.WriteLine($"result: {c.Base64Encode(unencodedText)}");
+    }
+
+
+    [Fact]
     public void FullDecryptionTest(){
 
       // ############## STEPS FOR DECRYPTING DATA ####################################
