@@ -44,6 +44,13 @@ public class CryptonTests
        Console.WriteLine($"result: {c.Base64Encode(unencodedText)}");
     }
 
+    [Fact]
+    public void Base64DecodeTest(){
+       Crypton c = new();
+       var encodedText = "dGhpcyBpcyB0aGUgdGVzdA==";
+       Console.WriteLine($"decoding: \"{encodedText}\"");
+       Console.WriteLine($"result: {c.Base64Decode(encodedText)}");
+    }
 
     [Fact]
     public void FullDecryptionTest(){
