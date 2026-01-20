@@ -15,7 +15,6 @@ public class Crypton{
 
       String decryptedHexString = BytesToHex(StringToBytes(DecryptStringFromBytes_Aes(encryptedBytes,keyPwd,ivBytes)));
       String decryptedData = Encoding.UTF8.GetString(HexStringToBytes(decryptedHexString));
-      Console.WriteLine(decryptedData);
       return decryptedData;
    }
 private string generateHmac(string mackey, string ivAndEncrypted){

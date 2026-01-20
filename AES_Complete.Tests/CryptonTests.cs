@@ -52,6 +52,16 @@ public class CryptonTests
        Console.WriteLine($"result: {c.Base64Decode(encodedText)}");
     }
 
+    [Fact] void DecryptTest(){
+       // Calls Crypton Decrypt()
+      Console.WriteLine("### Running Decrypt()... ####");
+      Crypton c = new();
+      string encryptedData = "5FH38LpqpfkRqQ5Tfvbr1T7PNQP\u002BPyAHjV/KDlsZ0gPP34EV3DjIKxgYlwtik9500FcYcqGhiOnyrKMtgc4xObrC4kUKz1RCP3EqKWGy9kbGfoDCsjPLoh38fluYiD0riRV6y6yY13jnWlp0WR\u002BJnXS287TUFLNj/qrHVnKBwAVOcw1xmZt29qRgp3\u002B1l3iGwQJSVLaKpKoHNTGd09VN/c0ZS6oQ6p6RDPF7XTgMXB4DHzILU\u002BWg6jWVGz7qal39ahHwRFkpTkb0u6zu\u002BdwpUEp5qnQ1cEPpgvSaTrjKWoN3W9NQVCosQqGvPNDvk7qpOj4yl2YrAnm7tmd3yZ/b6h1J\u002BeQhGyzXzGNKYtX71ZCLjTL2twBe33Z9V2SWufvrgqAEuv89bbUShKTcjvUmGCsuSF8QfnInPl6SWYCE0jn5JRhW65N6MJiG4iKdb1aFnV\u002Bba0Cgp/wPrwr6w9pynP2VSJ65Yn2srfGYfVUlyFccxJtV2/D4PoCF51gzXVOjbcUjOTpCe35CruSuwU1KXIuulCTY83leNpPDTanclcsE9HIJgX1qeboVwChfNoqLOlQd8K2S/PFX8HohI7Oqnrm98wipJVut3hkAsiNcSxcF6wyy76tIXa9Bi2WBBozB8KMGnB8tEgTpGBr5N9ZcgHihNEpOigOEeP/8WC5mbn0NMqmtdW3narNxnk6dr/lU5PAM0Q945vaGepuvm5pOP2twqESfXaJxsZ1\u002B1NjFWFdByx0We/ZvRCMnxBNyp6ILw/EUbbm\u002BfKpfZKxujQl0l4PxE1KZmE7En2oUf34Kqoiq75hrjGsjVFu2Pt6apDZLhtYRNVLRkQltNuxM2laec0\u002BoELTnIqdNIn1YQ2xOEiq6lwHy78Q\u002BRCw66m2kv5caOpHKdLYqYejgJd/rV0eAgmASM6hxXWjfas1wtZavGmxpeiPcSO/ESScKa7XcAc0NwRt/x/wBZcOtanXaASCXqrWRMGYiCURhrJd6wpp1tY1a8pD6CEvaZzxJ3j6T0JEh";
+      string keyPwd = "c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644";
+      string iv = "b4afcd8bfc1b17b926fb3ebe4d84027a";
+      Console.WriteLine($"{c.Decrypt(encryptedData, keyPwd, iv)}");
+    }
+
     [Fact]
     public void FullDecryptionTest(){
 
