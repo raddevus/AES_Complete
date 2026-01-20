@@ -8,6 +8,16 @@ public class Crypton{
    }
 
 
+   public string Decrypt(string encryptedData, string pwdKey, string iv){
+      Byte [] encryptedBytes = Base64DecodeAsBytes(encryptedData);
+      Byte [] keyPwd = HexStringToBytes(pwdKey);
+      Byte [] ivBytes = HexStringToBytes(iv);
+
+      String decryptedHexString = BytesToHex(StringToBytes(DecryptStringFromBytes_Aes(encryptedBytes,keyPwd,ivBytes)));
+      String decryptedData = Encoding.UTF8.GetString(HexStringToBytes(decryptedHexString));
+      Console.WriteLine(decryptedData);
+      return decryptedData;
+   }
 private string generateHmac(string mackey, string ivAndEncrypted){
 	// NOTE: mackey is lowercased hex values
 	// Example mackey: "c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644"
