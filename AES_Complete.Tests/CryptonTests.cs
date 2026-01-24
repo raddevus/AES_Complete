@@ -6,6 +6,11 @@ namespace AES_Complete.Tests;
 
 public class CryptonTests
 {
+   [Fact]
+   public void EncryptDecrypt(){
+      Crypton c = new();
+      Console.WriteLine($"Encrypted base64: {c.Encrypt("abc", "a40ebcd6611aee763d931762dbc5ff75bf0f54d4f029eb2f3524adf9036ffdfb")}");
+   }
     [Fact]
     public void GenerateHMAC()
     {
