@@ -8,8 +8,9 @@ public class Crypton{
    }
 
    public string Encrypt(string plainText, string pwdKey){
-      var encryptedBytes = EncryptStringToBytes_Aes( plainText, HexStringToBytes(pwdKey), HexStringToBytes("515f4ad7efe685eb1e296a03d438efce"));
-      return Base64Encode(BytesToHex(encryptedBytes));
+      var iv = "515f4ad7efe685eb1e296a03d438efce";
+      var encryptedBytes = EncryptStringToBytes_Aes( plainText, HexStringToBytes(pwdKey), HexStringToBytes(iv));
+      return Base64Encode(encryptedBytes);
       
    }
 
@@ -123,6 +124,11 @@ public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] I
     }
 
     return plaintext;
+}
+
+public string Base64Encode(byte [] encryptedBytes) 
+{
+  return System.Convert.ToBase64String(encryptedBytes);
 }
 
 public string Base64Encode(string plainText) 
