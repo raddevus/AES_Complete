@@ -8,7 +8,9 @@ public class Crypton{
    }
 
    public string Encrypt(string plainText, string pwdKey, out string iv){
-      iv = "515f4ad7efe685eb1e296a03d438efce";
+      byte [] ivBytes = new byte[16];
+      new RNGCryptoServiceProvider().GetBytes(ivBytes);
+      iv = BytesToHex(ivBytes);
       var encryptedBytes = EncryptStringToBytes_Aes( plainText, HexStringToBytes(pwdKey), HexStringToBytes(iv));
       return Base64Encode(encryptedBytes);
       
