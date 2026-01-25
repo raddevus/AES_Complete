@@ -10,10 +10,10 @@ public class CryptonTests
    public void EncryptDecrypt(){
       Crypton c = new();
       var pwdKey = "a40ebcd6611aee763d931762dbc5ff75bf0f54d4f029eb2f3524adf9036ffdfb";
-      var encryptedBase64 = c.Encrypt("abc", pwdKey);
-      var iv = "515f4ad7efe685eb1e296a03d438efce";
+      string ivFromEncrypt;
+      var encryptedBase64 = c.Encrypt("abc", pwdKey, out ivFromEncrypt);
       Console.WriteLine($"Encrypted base64: {encryptedBase64}");
-      var decryptedMessage = c.Decrypt(encryptedBase64, pwdKey, iv);
+      var decryptedMessage = c.Decrypt(encryptedBase64, pwdKey, ivFromEncrypt);
       Console.WriteLine($"Decrypted message: {decryptedMessage}");
    }
     [Fact]

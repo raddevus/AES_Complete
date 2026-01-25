@@ -7,8 +7,8 @@ public class Crypton{
    public Crypton(){
    }
 
-   public string Encrypt(string plainText, string pwdKey){
-      var iv = "515f4ad7efe685eb1e296a03d438efce";
+   public string Encrypt(string plainText, string pwdKey, out string iv){
+      iv = "515f4ad7efe685eb1e296a03d438efce";
       var encryptedBytes = EncryptStringToBytes_Aes( plainText, HexStringToBytes(pwdKey), HexStringToBytes(iv));
       return Base64Encode(encryptedBytes);
       
