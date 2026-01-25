@@ -1,3 +1,5 @@
+namespace NewLibre.Models;
+
 public class CyaBucket {
    public Int64 Id{get;set;}
    public String Data{get;set;}

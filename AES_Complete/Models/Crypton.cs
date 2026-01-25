@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AES_Complete.Models;
+namespace NewLibre.Models;
 
 public class Crypton{
    public Crypton(){
