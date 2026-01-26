@@ -12,9 +12,10 @@ if (response.ToUpper() == "Y"){
    CyaService cs = new CyaService(args[0]);
    var cya = await cs.GetCyaData();
    Console.WriteLine("Waiting for async call to complete.");
-   //Console.ReadLine();
+
    if (cya != null){
       Console.WriteLine($"iv - {cya.CyaBucket.Iv}");
+      Console.WriteLine($"hmac - {cya.CyaBucket.Hmac}");
    }
    return;
 }

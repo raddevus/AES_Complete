@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using AES_Complete.Models;
+using NewLibre.Models;
+using NewLibre.Services;
 
 namespace AES_Complete.Tests;
 
@@ -44,6 +45,10 @@ public class CryptonTests
       byte [] plainText = c.StringToBytes("a");
       hashValue = hmac.ComputeHash(plainText);
       Console.WriteLine($"HMAC: {c.BytesToHex(hashValue)}");
+    }
+
+    [Fact]
+    public void RetrieveDataAndDecrypt(){
     }
 
     [Fact]
