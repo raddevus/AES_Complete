@@ -10,9 +10,12 @@ if (response.ToUpper() == "Y"){
       return;
    }
    CyaService cs = new CyaService(args[0]);
-   cs.GetCyaData();
+   var cya = await cs.GetCyaData();
    Console.WriteLine("Waiting for async call to complete.");
-   Console.ReadLine();
+   //Console.ReadLine();
+   if (cya != null){
+      Console.WriteLine($"iv - {cya.CyaBucket.Iv}");
+   }
    return;
 }
 Crypton c = new();
