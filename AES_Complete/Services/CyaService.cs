@@ -10,7 +10,7 @@ public class CyaService{
       MainToken = mainToken;
    }
 
-   async public void GetCyaData(){
+   async public Task<CyaDTO> GetCyaData(){
       var http = new HttpClient();
 
       var url = $"https://actionmobile.app/Cya/GetData?key={MainToken}";
@@ -19,9 +19,11 @@ public class CyaService{
       var cya = await http.GetFromJsonAsync<CyaDTO>(url);
       if (cya?.Success ?? false){
          Console.WriteLine($"Success! {cya.CyaBucket.Id}");
+         return cya;
       }
       
       Console.WriteLine($"Success: {cya?.Success}");
+      return null;
    }
 
 }
