@@ -49,6 +49,8 @@ public class CryptonTests
 
     [Fact]
     async public void RetrieveDataAndDecrypt(){
+       Console.WriteLine("###############################");
+       Console.WriteLine("### Retrieving & Decrypting ###");
        Crypton c = new();
        CyaService cs = new ("demoKeys2022");
        var cya = await cs.GetCyaData();
