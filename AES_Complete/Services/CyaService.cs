@@ -17,8 +17,11 @@ public class CyaService{
 
       // Strongly-typed fetch
       var cya = await http.GetFromJsonAsync<CyaDTO>(url);
-
-      Console.WriteLine($"Success: {cya?.Success}, Id: {cya.CyaBucket.Id}");
+      if (cya?.Success ?? false){
+         Console.WriteLine($"Success! {cya.CyaBucket.Id}");
+      }
+      
+      Console.WriteLine($"Success: {cya?.Success}");
    }
 
 }
