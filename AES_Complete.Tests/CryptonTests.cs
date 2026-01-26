@@ -48,7 +48,18 @@ public class CryptonTests
     }
 
     [Fact]
-    public void RetrieveDataAndDecrypt(){
+    async public void RetrieveDataAndDecrypt(){
+       Crypton c = new();
+       CyaService cs = new ("demoKeys2022");
+       var cya = await cs.GetCyaData();
+       if (cya != null){
+         string keyPwd = "c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644";
+         var decryptedMessage = c.Decrypt(cya.CyaBucket.Data, keyPwd, cya.CyaBucket.Iv);
+         Console.WriteLine($"Decrypted message: {decryptedMessage}");
+       }
+       else{
+          Console.WriteLine("Didn't retrieve data from webapi.");
+       }
     }
 
     [Fact]
