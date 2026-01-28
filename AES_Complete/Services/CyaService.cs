@@ -5,18 +5,17 @@ namespace NewLibre.Services;
 
 public class CyaService{
    private String MainToken; 
-   private String apiBaseUrl = "https://actionmobile.app/Cya/GetData?key=";
-
-   public CyaService(string mainToken){
+   private String ApiBaseUrl; 
+   public CyaService(string mainToken, string apiBaseUrl){
       MainToken = mainToken;
       // If you want to set the URL to newlibre.com/LibreStore 
-      apiBaseUrl = "https://newlibre.com/LibreStore/cya/GetData?key=";
+      ApiBaseUrl = apiBaseUrl;
    }
 
    async public Task<CyaDTO> GetCyaData(){
       var http = new HttpClient();
 
-      var url = $"{apiBaseUrl}{MainToken}";
+      var url = $"{ApiBaseUrl}{MainToken}";
 
       // Strongly-typed fetch
       var cya = await http.GetFromJsonAsync<CyaDTO>(url);

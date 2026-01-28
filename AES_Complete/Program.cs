@@ -9,7 +9,8 @@ if (response.ToUpper() == "Y"){
       Console.WriteLine("Please provide a MainToken on the command line.");
       return;
    }
-   CyaService cs = new CyaService(args[0]);
+   CyaService cs = new CyaService(args[0], 
+         "https://newlibre.com/LibreStore/cya/GetData?key=");
    var cya = await cs.GetCyaData();
    Console.WriteLine("Waiting for async call to complete.");
 
