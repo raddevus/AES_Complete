@@ -14,27 +14,36 @@ public class Crypton{
       
    }
 
-   public string Decrypt(string encryptedData, string pwdKey, string iv){
-      Byte [] encryptedBytes = Base64DecodeAsBytes(encryptedData);
-      Byte [] keyPwd = HexStringToBytes(pwdKey);
-      Byte [] ivBytes = HexStringToBytes(iv);
+   public bool Decrypt(string encryptedData, string pwdKey, string iv, out string decryptedData){
+      // #########################################
+      // returns bool indicating success / fail of decryption process
+      // if succeeds then out 
+      try {
+            Byte [] encryptedBytes = Base64DecodeAsBytes(encryptedData);
+            Byte [] keyPwd = HexStringToBytes(pwdKey);
+            Byte [] ivBytes = HexStringToBytes(iv);
 
-      String decryptedHexString = BytesToHex(StringToBytes(DecryptStringFromBytes_Aes(encryptedBytes,keyPwd,ivBytes)));
-      String decryptedData = Encoding.UTF8.GetString(HexStringToBytes(decryptedHexString));
-      return decryptedData;
+            String decryptedHexString = BytesToHex(StringToBytes(DecryptStringFromBytes_Aes(encryptedBytes,keyPwd,ivBytes)));
+            decryptedData = Encoding.UTF8.GetString(HexStringToBytes(decryptedHexString));
+            return true;
+         }  
+         catch (Exception ex){
+            decryptedData = string.Empty;
+            return false;
+         }
+      }
+   private string generateHmac(string mackey, string ivAndEncrypted){
+      // NOTE: mackey is lowercased hex values
+      // Example mackey: "c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644"
+      // NOTE: ivAndEncrypted is lowercased in format of iv:encryptedData
+      // Example data: "8c087c023bd23434947a4a477b19dba9:GoHi/mW23ZUwxFkRkbxaCByudTl8FsWw23Yz+KB0ALt9yil8y"
+      byte[] mackeyBytes = StringToBytes(mackey);
+      var hmac = new HMACSHA256(mackeyBytes);
+      var plainText = StringToBytes(ivAndEncrypted);
+      var hmacOut = hmac.ComputeHash(plainText);
+      Console.WriteLine(BytesToHex(hmacOut));
+      return BytesToHex(hmacOut);
    }
-private string generateHmac(string mackey, string ivAndEncrypted){
-	// NOTE: mackey is lowercased hex values
-	// Example mackey: "c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644"
-	// NOTE: ivAndEncrypted is lowercased in format of iv:encryptedData
-	// Example data: "8c087c023bd23434947a4a477b19dba9:GoHi/mW23ZUwxFkRkbxaCByudTl8FsWw23Yz+KB0ALt9yil8y"
-	byte[] mackeyBytes = StringToBytes(mackey);
-	var hmac = new HMACSHA256(mackeyBytes);
-	var plainText = StringToBytes(ivAndEncrypted);
-	var hmacOut = hmac.ComputeHash(plainText);
-	Console.WriteLine(BytesToHex(hmacOut));
-	return BytesToHex(hmacOut);
-}
 
 public bool ValidateHmac(string mackey, string ivAndEncrypted, string targetMac){
    var generatedHmac = generateHmac(mackey, ivAndEncrypted);
