@@ -4,8 +4,6 @@ using System.Text;
 namespace NewLibre.Models;
 
 public class Crypton{
-   public Crypton(){
-   }
 
    public string Encrypt(string plainText, string pwdKey, out string iv){
       byte [] ivBytes = new byte[16];
