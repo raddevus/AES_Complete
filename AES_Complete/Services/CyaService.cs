@@ -15,7 +15,7 @@ public class CyaService{
    async public Task<CyaDTO> GetCyaData(){
       var http = new HttpClient();
 
-      var url = $"{ApiBaseUrl}{MainToken}";
+      var url = $"{ApiBaseUrl}/Cya/GetData?key={MainToken}";
 
       // Strongly-typed fetch
       var cya = await http.GetFromJsonAsync<CyaDTO>(url);
