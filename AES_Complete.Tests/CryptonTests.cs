@@ -48,8 +48,29 @@ public class CryptonTests
       Console.WriteLine($"HMAC: {c.BytesToHex(hashValue)}");
     }
 
+
     [Fact]
-    async public void RetrieveDataAndDecrypt(){
+    async public Task RetrieveDataWithSlash(){
+       Console.WriteLine("###############################");
+       Console.WriteLine("### Retrieving from actionmobile ###");
+       Crypton c = new();
+       CyaService cs = new ("2023-08-24Master", 
+             "https://actionmobile.app/");
+       var cya = await cs.GetCyaData();
+    }
+   
+    [Fact]
+    async public Task RetrieveDataWithoutSlash(){
+       Console.WriteLine("###############################");
+       Console.WriteLine("### Retrieving from actionmobile ###");
+       Crypton c = new();
+       CyaService cs = new ("2023-08-24Master", 
+             "https://actionmobile.app");
+       var cya = await cs.GetCyaData();
+    }
+    
+    [Fact]
+    async public Task RetrieveDataAndDecrypt(){
        Console.WriteLine("###############################");
        Console.WriteLine("### Retrieving & Decrypting ###");
        Crypton c = new();

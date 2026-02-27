@@ -6,6 +6,8 @@ namespace NewLibre.Services;
 public class CyaService{
    private String MainToken; 
    private String ApiBaseUrl; 
+   private String GetDataUrl = "/Cya/GetData?key=";
+   
    public CyaService(string mainToken, string apiBaseUrl){
       MainToken = mainToken;
       // If you want to set the URL to newlibre.com/LibreStore 
@@ -14,9 +16,9 @@ public class CyaService{
 
    async public Task<CyaDTO> GetCyaData(){
       var http = new HttpClient();
-
-      var url = $"{ApiBaseUrl}/Cya/GetData?key={MainToken}";
-
+      
+      // new Uri() call safely concats URLs considering / etc.      
+      var url = $"{new Uri(new Uri(ApiBaseUrl), GetDataUrl)}{MainToken}";
       // Strongly-typed fetch
       var cya = await http.GetFromJsonAsync<CyaDTO>(url);
       if (cya?.Success ?? false){
