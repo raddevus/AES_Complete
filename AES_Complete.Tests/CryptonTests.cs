@@ -54,7 +54,7 @@ public class CryptonTests
        Console.WriteLine("### Retrieving & Decrypting ###");
        Crypton c = new();
        CyaService cs = new ("demoKeys2022", 
-             "https://newlibre.com/LibreStore/cya/GetData?key=");
+             "https://newlibre.com/LibreStore/");
        var cya = await cs.GetCyaData();
        if (cya != null){
          string keyPwd = "c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644";
