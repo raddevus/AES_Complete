@@ -57,6 +57,11 @@ public class CryptonTests
        CyaService cs = new ("2023-08-24Master", 
              "https://actionmobile.app/");
        var cya = await cs.GetCyaData();
+
+       cs = new ("demoKeys2022", 
+             "https://newlibre.com/LibreStore/");
+       cya = await cs.GetCyaData();
+
     }
    
     [Fact]
@@ -67,6 +72,28 @@ public class CryptonTests
        CyaService cs = new ("2023-08-24Master", 
              "https://actionmobile.app");
        var cya = await cs.GetCyaData();
+       
+       cs = new ("demoKeys2022", 
+             "https://newlibre.com/LibreStore");
+       cya = await cs.GetCyaData();
+    }
+
+    [Fact]
+    async public Task RetrieveDataWithDoubleSlashes(){
+       Console.WriteLine("###############################");
+       Console.WriteLine("### Retrieving from actionmobile ###");
+       Crypton c = new();
+       CyaService cs = new ("2023-08-24Master", 
+             "https://actionmobile.app//");
+       var hrex = Record.ExceptionAsync(async ()  => {
+         var cya = await cs.GetCyaData();
+       });
+       Assert.NotNull(hrex); 
+       cs = new ("demoKeys2022", 
+             "https://newlibre.com/LibreStore//");
+       hrex = Record.ExceptionAsync(async ()  => {
+          var cya = await cs.GetCyaData();
+      });
     }
     
     [Fact]

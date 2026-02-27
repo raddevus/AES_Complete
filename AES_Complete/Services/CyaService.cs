@@ -20,10 +20,15 @@ public class CyaService{
    async public Task<CyaDTO> GetCyaData(){
       var http = new HttpClient();
 
+      // Check & insure that last char is a slash (if not, fix) 
+      if (ApiBaseUrl.Substring(ApiBaseUrl.Length-1,1) != "/"){
+         ApiBaseUrl += "/";
+      }
       var uri = new Uri(ApiBaseUrl);
-      
+      Console.WriteLine($"uri: {uri}"); 
       // new Uri() call safely concats URLs considering / etc.      
       string url = $"{new Uri(uri, GetDataUrl)}{MainToken}";
+      Console.WriteLine($"url : {url}");
       // Strongly-typed fetch
       var cya = await http.GetFromJsonAsync<CyaDTO>(url);
       if (cya?.Success ?? false){
