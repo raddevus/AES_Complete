@@ -6,7 +6,10 @@ namespace NewLibre.Services;
 public class CyaService{
    private String MainToken; 
    private String ApiBaseUrl; 
-   private String GetDataUrl = "/Cya/GetData?key=";
+   // For the URI string build to work the GetDataUrl
+   // CANNOT have a leading / (slash)
+   // If it does, then parts of the URL are stripped off
+   private String GetDataUrl = "Cya/GetData?key=";
    
    public CyaService(string mainToken, string apiBaseUrl){
       MainToken = mainToken;
@@ -16,9 +19,11 @@ public class CyaService{
 
    async public Task<CyaDTO> GetCyaData(){
       var http = new HttpClient();
+
+      var uri = new Uri(ApiBaseUrl);
       
       // new Uri() call safely concats URLs considering / etc.      
-      var url = $"{new Uri(new Uri(ApiBaseUrl), GetDataUrl)}{MainToken}";
+      string url = $"{new Uri(uri, GetDataUrl)}{MainToken}";
       // Strongly-typed fetch
       var cya = await http.GetFromJsonAsync<CyaDTO>(url);
       if (cya?.Success ?? false){
