@@ -32,7 +32,7 @@ public class Crypton{
             return false;
          }
       }
-   private string generateHmac(string mackey, string ivAndEncrypted){
+   public string generateHmac(string mackey, string ivAndEncrypted){
       // NOTE: mackey is lowercased hex values
       // Example mackey: "c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644"
       // NOTE: ivAndEncrypted is lowercased in format of iv:encryptedData
