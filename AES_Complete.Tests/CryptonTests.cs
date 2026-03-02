@@ -46,6 +46,9 @@ public class CryptonTests
       byte [] plainText = c.StringToBytes("a");
       hashValue = hmac.ComputeHash(plainText);
       Console.WriteLine($"HMAC: {c.BytesToHex(hashValue)}");
+
+      var h2 = c.GenerateHmac("test","garbage");
+      Console.WriteLine($"GenerateHmac: {h2}");
     }
 
 
