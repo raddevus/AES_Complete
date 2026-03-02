@@ -67,8 +67,13 @@ public class CyaService{
       // Strongly-typed fetch
       var response = await http.PostAsync(url, formData);
       Console.WriteLine($"reponse: {response}");
-     // response.EnsureSuccessStatusCode(); 
-     return true;
+    try{ 
+      response.EnsureSuccessStatusCode(); 
+      return true;
+    }
+    catch{
+       return false;
+     }
    }
 
     //SaveData([FromForm] String key,
