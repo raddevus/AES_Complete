@@ -13,3 +13,22 @@ You can run `$ dotnet test` to see everything run.
 
 ### Basic Usage
 
+```C#
+// new up a Crypton 
+Crypton c = new();
+// call Encrypt with the proper parameters
+var plainText = "abc" // what you want to encrypt
+// hex string of 32 characters (will be converted to bytes)
+var pwdKey = "c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644"
+var iv = //randomly gen'd IV is allowed to be seen in the clear 
+var encryptedBase64Bytes = c.Encrypt(plainText, pwdKey, 
+
+// sample of Encrypt method found in Crypton class
+ string Encrypt(string plainText, string pwdKey, out string iv){
+      byte [] ivBytes = new byte[16];
+      new RNGCryptoServiceProvider().GetBytes(ivBytes);
+      iv = BytesToHex(ivBytes);
+      var encryptedBytes = EncryptStringToBytes_Aes( plainText, HexStringToBytes(pwdKey), HexStringToBytes(iv));
+      return Base64Encode(encryptedBytes);
+}
+```
