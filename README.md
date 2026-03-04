@@ -20,8 +20,11 @@ Crypton c = new();
 var plainText = "abc" // what you want to encrypt
 // hex string of 32 characters (will be converted to bytes)
 var pwdKey = "c4747607e721580882e7186c136b22d9670779af296772a7abb76f0f40526644"
-var iv = //randomly gen'd IV is allowed to be seen in the clear 
-var encryptedBase64Bytes = c.Encrypt(plainText, pwdKey, 
+var iv = string.Empty; //randomly gen'd IV is allowed to be seen in the clear
+// random iv is returned in the iv string from the Encrypt method -- changes every
+// time you encrypt your data.
+var encryptedBase64Bytes = c.Encrypt(plainText, pwdKey, out iv);
+
 
 // sample of Encrypt method found in Crypton class
  string Encrypt(string plainText, string pwdKey, out string iv){
