@@ -13,6 +13,7 @@
   </metadata>
 
   <files>
+    <file src="LICENSE" target="" />
     <file src="AES_Complete\bin\Release\net10.0\AES_Complete.dll" target="lib\net10.0\" />
     <file src="AES_Complete\bin\Release\net10.0\AES_Complete.xml" target="lib\net10.0\" />
   </files>
